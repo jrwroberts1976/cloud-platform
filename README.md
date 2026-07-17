@@ -43,7 +43,6 @@ A production-style cloud engineering project demonstrating Infrastructure as Cod
 
 ## Repository Structure
 
-# Repository Structure
 
 ```text
 cloud-platform/
