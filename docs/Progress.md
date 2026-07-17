@@ -14,6 +14,7 @@ Completed:
 - SSH identities separated
 - Terraform repository structure created
 - Initial networking module created
+- created AWS account
 
 ---
 
