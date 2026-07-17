@@ -1,105 +1,87 @@
 # Project Blockers
 
-## Current Blockers
+This document records issues that prevent progress on the project, along with their resolution.
 
 ---
 
-# AWS Account Activation
+# Current Status
 
-**Status:** Waiting
+**There are currently no active project blockers.**
 
-**Date Identified:** July 2026
+Development is continuing as planned.
 
-## Description
+---
 
-The cloud platform deployment is currently blocked pending completion of AWS account activation.
+# Resolved Blockers
 
-The initial cloud engineering environment has been prepared locally, including:
+## AWS Account Activation
 
-* Raspberry Pi 4 cloud workstation
+**Status:** ✅ Resolved
+
+**Date Identified:** 17 July 2026
+
+**Date Resolved:** 17 July 2026
+
+### Description
+
+Initial AWS infrastructure deployment was blocked while waiting for AWS account activation and verification.
+
+The local development environment was completed during this period, including:
+
+* Raspberry Pi 4 cloud engineering workstation
 * Terraform installation
 * AWS CLI installation
-* GitHub repository integration
+* GitHub repository creation
 * Terraform project structure
-* Initial AWS Terraform modules
+* Reusable Terraform modules
+* Project documentation
 
-However, AWS infrastructure deployment cannot begin until the AWS account has completed activation.
+### Resolution
 
----
+AWS account activation completed successfully.
 
-## Impact
+The following prerequisites are now available:
 
-The following activities are currently paused:
+* AWS account active
+* IAM administrative user created
+* Programmatic access configured
+* Ready to configure AWS CLI credentials
+* Ready to begin Terraform deployments
 
-* AWS IAM user creation
-* AWS CLI authentication configuration
-* Terraform AWS provider authentication testing
-* Terraform remote state configuration
-* AWS VPC deployment
-* EC2 instance deployment
-* Cloud service migration
+### Outcome
 
----
-
-## Planned Actions Once AWS Activation Completes
-
-1. Configure AWS CLI credentials
-
-```bash
-aws configure
-```
-
-2. Verify AWS identity
-
-```bash
-aws sts get-caller-identity
-```
-
-3. Configure Terraform authentication
-
-4. Create Terraform remote state backend:
-
-* S3 bucket for Terraform state
-* DynamoDB table for state locking
-
-5. Deploy initial AWS infrastructure:
-
-* VPC
-* Subnets
-* Route tables
-* Internet Gateway
-* Security Groups
-
-6. Deploy first cloud compute resources.
+The project can now progress to infrastructure deployment using Terraform.
 
 ---
 
-## Current Workaround
+# Future Blocker Process
 
-Development continues locally using the Raspberry Pi 4 as the cloud engineering workstation.
+Any future blockers will be recorded in this document using the following format:
 
-Completed activities can continue independently:
+* Description of the issue
+* Date identified
+* Impact on the project
+* Workaround (if available)
+* Resolution
+* Lessons learned
 
-* Terraform module development
-* Documentation
-* Git workflow improvements
-* Ansible preparation
-* Kubernetes planning
-* Architecture design
-
----
-
-## Resolution Criteria
-
-This blocker will be considered resolved when:
-
-* AWS account activation is complete
-* AWS Console access is available
-* AWS CLI authentication succeeds
-* Terraform can successfully communicate with AWS APIs
+Maintaining a blocker log provides visibility into project risks and documents how issues were resolved throughout the project lifecycle.
 
 ---
 
-## Notes
+# Next Phase
 
-AWS account activation may take up to 24 hours. No infrastructure deployment will be attempted until account activation and billing verification are complete.
+The project now moves into **AWS Infrastructure Deployment**.
+
+Immediate priorities are:
+
+1. Configure AWS CLI authentication.
+2. Verify AWS access using AWS STS.
+3. Create the Terraform remote backend (S3 and DynamoDB).
+4. Deploy the AWS Virtual Private Cloud (VPC).
+5. Deploy supporting networking components.
+6. Launch the first EC2 instance.
+
+---
+
+*Last Updated: 17 July 2026*
