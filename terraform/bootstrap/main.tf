@@ -12,8 +12,7 @@ resource "aws_s3_bucket" "terraform_state" {
 
 resource "aws_s3_bucket_versioning" "terraform_state" {
 
-  bucket = aws_s3_bucket.terraform_state.id
-
+  bucket = "jrwroberts-cloud-platform-terraform-state"
   versioning_configuration {
     status = "Enabled"
   }
