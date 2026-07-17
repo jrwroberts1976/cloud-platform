@@ -1,53 +1,46 @@
 # Cloud Platform
 
-A portfolio project demonstrating modern Cloud Engineering, DevOps, Infrastructure as Code, Monitoring, Security, and Automation practices.
-
-## Technologies
-
-### Cloud
-
-* AWS
-
-### Infrastructure as Code
-
-* Terraform
-
-### Configuration Management
-
-* Ansible
-
-### Containers
-
-* Docker
-* Docker Compose
-* Kubernetes (planned)
-
-### Monitoring & Observability
-
-* Grafana
-* Prometheus
-* Loki
-* Promtail
-
-### Security
-
-* CrowdSec
-* Authelia
-* TLS/SSL
-* Security Groups
-
-### CI/CD
-
-* GitHub Actions
+A production-style cloud engineering project demonstrating Infrastructure as Code, automation, monitoring, security, and DevOps practices using AWS and Terraform.
 
 ## Project Goals
 
-* Build cloud infrastructure entirely from code.
-* Automate deployment and configuration.
-* Implement monitoring and observability.
-* Demonstrate cloud engineering best practices.
-* Create a portfolio project supporting Cloud Engineer and DevOps Engineer roles.
+- Deploy AWS infrastructure using Terraform
+- Build reusable Infrastructure as Code modules
+- Implement monitoring and observability
+- Automate deployments with GitHub Actions
+- Deploy containerised applications
+- Build a hybrid cloud architecture
+- Demonstrate cloud engineering best practices
+
+## Technology Stack
+
+- AWS
+- Terraform
+- Docker
+- Kubernetes (k3s)
+- Ansible
+- GitHub Actions
+- Prometheus
+- Grafana
+- Loki
+- CrowdSec
+- Authelia
+- Linux (Debian)
 
 ## Current Status
 
-Phase 1 – Foundation
+✅ Foundation Complete
+
+🚧 AWS Infrastructure
+
+⬜ Container Platform
+
+⬜ Monitoring
+
+⬜ CI/CD
+
+⬜ Kubernetes
+
+## Repository Structure
+
+...
