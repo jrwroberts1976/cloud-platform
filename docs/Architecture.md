@@ -2,50 +2,89 @@
 
 ## Overview
 
-This project demonstrates the design, deployment, and operation of a hybrid cloud platform using Infrastructure as Code, automation, monitoring, and security best practices.
+This project demonstrates the design and deployment of a hybrid cloud platform using Infrastructure as Code, automation, monitoring, and security best practices.
 
-## Objectives
+The platform combines local Raspberry Pi infrastructure with AWS cloud services.
 
-* Provision AWS infrastructure using Terraform.
-* Configure systems using Ansible.
-* Deploy containerised applications using Docker.
-* Implement monitoring and observability.
-* Secure services using modern authentication and threat detection.
-* Maintain hybrid connectivity between cloud services and on-premises infrastructure.
+---
 
-## Target Architecture
+## Current Architecture
 
-Home Raspberry Pi 4
+The current environment consists of:
 
-* BirdNET-Go
-* Local microphone access
+### Local Infrastructure
+
+Raspberry Pi 4
+
+Responsibilities:
+- Terraform workstation
+- AWS CLI management
+- Git development environment
+- Future Ansible controller
+- BirdNET-Go remains local due to microphone hardware requirements
+
+### Cloud Platform (AWS)
+
+Planned deployment:
+
+- AWS VPC
+- Public and private networking
+- EC2 compute
+- Docker services
+- Monitoring platform
+
+---
+
+## Infrastructure as Code
+
+Terraform is used to manage AWS infrastructure.
+
+Repository structure:
+
+terraform/
+
+- environments/
+  - dev
+  - test
+  - prod
+
+- modules/
+  - networking
+  - ec2
+  - iam
+  - monitoring
+  - security-groups
+
+Reusable Terraform modules allow environments to share common infrastructure patterns.
+
+---
+
+## Deployment Workflow
+
+Local development machine
 
 ↓
 
-Secure VPN Connectivity
+GitHub repository
 
 ↓
 
-AWS Cloud Platform
-
-* VPC
-* EC2
-* Security Groups
-* Docker Services
+Terraform
 
 ↓
 
-Monitoring & Observability
-
-* Grafana
-* Prometheus
-* Loki
-* Promtail
+AWS Infrastructure
 
 ↓
 
-Identity & Security
+Cloud Services
 
-* Authelia
-* CrowdSec
-* TLS Certificates
+---
+
+## Design Principles
+
+- Infrastructure should be reproducible.
+- Infrastructure changes should be version controlled.
+- Cloud resources should be deployed using code.
+- Security should be built into the platform.
+- Monitoring should be included from the beginning.
