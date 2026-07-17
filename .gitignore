@@ -1,0 +1,18 @@
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
+
+# AWS
+*.pem
+
+# Environment
+.env
+
+# Python
+__pycache__/
+*.pyc
+
+# Editors
+.vscode/
