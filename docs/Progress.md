@@ -40,35 +40,49 @@ This document tracks the progress of the Cloud Platform Engineering Lab and reco
 
 ---
 
-# Milestone 3 - AWS Networking
+# Milestone 3 - AWS Infrastructure Deployment
 
-**Status:** 🚧 In Progress
+**Status:** ✅ Complete
 
-## Tasks
+## Completed
 
-- Configure Terraform environments to use the remote backend
-- Deploy Virtual Private Cloud (VPC)
-- Create public subnet
-- Create private subnet
-- Configure Internet Gateway
-- Configure Route Tables
-- Deploy Security Groups
-- Launch first EC2 instance
+- Terraform development environment configured
+- Terraform remote backend connected
+- AWS VPC deployed
+- Public subnet deployed
+- Private subnet deployed
+- Internet Gateway deployed
+- Public Route Table deployed
+- Route Table association configured
+- EC2 Terraform module created
+- EC2 Security Group deployed
+- EC2 SSH key pair configured
+- Amazon Linux EC2 instance deployed
+- Terraform outputs configured for EC2 details
+- Successful EC2 deployment verified
 
 ---
 
 # Milestone 4 - Cloud Platform Services
 
-**Status:** ⏳ Planned
+**Status:** 🚧 In Progress
 
 ## Tasks
 
-- Docker deployment
-- Ansible configuration management
-- Monitoring stack (Prometheus, Grafana, Loki)
-- Security services (CrowdSec and Authelia)
-- GitHub Actions CI/CD
-- Kubernetes (k3s)
+- Configure EC2 server using Ansible
+- Install Docker runtime
+- Deploy container platform
+- Deploy monitoring stack:
+  - Prometheus
+  - Grafana
+  - Loki
+  - Node Exporter
+  - cAdvisor
+- Integrate security services:
+  - CrowdSec
+  - Authelia
+- Configure GitHub Actions CI/CD
+- Explore Kubernetes (k3s)
 
 ---
 
@@ -79,11 +93,15 @@ This document tracks the progress of the Cloud Platform Engineering Lab and reco
 ## Tasks
 
 - Infrastructure monitoring
-- Cost monitoring and optimisation
+- AWS cost monitoring and optimisation
 - Automated infrastructure testing
 - Disaster recovery documentation
-- Multi-environment deployments (Development, Test and Production)
+- Multi-environment deployments:
+  - Development
+  - Test
+  - Production
 - Platform hardening and security improvements
+- Secrets management implementation
 
 ---
 
@@ -93,25 +111,25 @@ This document tracks the progress of the Cloud Platform Engineering Lab and reco
 |-----------|--------|
 | Foundation | ✅ Complete |
 | AWS Infrastructure Foundation | ✅ Complete |
-| AWS Networking | 🚧 In Progress |
-| Cloud Platform Services | ⏳ Planned |
+| AWS Infrastructure Deployment | ✅ Complete |
+| Cloud Platform Services | 🚧 In Progress |
 | Platform Optimisation | ⏳ Planned |
 
 ---
 
 # Next Milestone
 
-The next objective is to build the AWS networking layer using Terraform.
+The next objective is to configure and build the cloud platform services layer.
 
 Planned work includes:
 
-- Configure Terraform to use the remote backend
-- Create the AWS VPC
-- Deploy public and private subnets
-- Configure Internet Gateway
-- Configure Route Tables
-- Create Security Groups
-- Launch the first EC2 instance
+- Configure EC2 using Ansible
+- Harden SSH access
+- Install Docker
+- Deploy application containers
+- Configure monitoring
+- Implement security tooling
+- Begin CI/CD automation
 
 ---
 
