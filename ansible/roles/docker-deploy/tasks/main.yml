@@ -7,6 +7,7 @@
     group: ec2-user
     mode: "0755"
 
+
 - name: Copy platform compose file
   ansible.builtin.copy:
     src: platform.yml
@@ -15,34 +16,48 @@
     group: ec2-user
     mode: "0644"
 
-- name: Copy monitoring compose file
-  ansible.builtin.copy:
-    src: monitoring.yml
-    dest: /opt/cloud-platform/monitoring.yml
-    owner: ec2-user
-    group: ec2-user
-    mode: "0644"
 
-- name: Create Prometheus configuration directory
+- name: Create monitoring directory
   ansible.builtin.file:
-    path: /opt/cloud-platform/prometheus
+    path: /opt/cloud-platform/monitoring
     state: directory
     owner: ec2-user
     group: ec2-user
     mode: "0755"
 
-- name: Copy Prometheus configuration
+
+- name: Copy monitoring compose file
   ansible.builtin.copy:
-    src: prometheus.yml
-    dest: /opt/cloud-platform/prometheus/prometheus.yml
+    src: monitoring.yml
+    dest: /opt/cloud-platform/monitoring/docker-compose.yml
     owner: ec2-user
     group: ec2-user
     mode: "0644"
+
+
+- name: Create prometheus configuration directory
+  ansible.builtin.file:
+    path: /opt/cloud-platform/monitoring/prometheus
+    state: directory
+    owner: ec2-user
+    group: ec2-user
+    mode: "0755"
+
+
+- name: Copy prometheus configuration
+  ansible.builtin.copy:
+    src: prometheus/prometheus.yml
+    dest: /opt/cloud-platform/monitoring/prometheus/prometheus.yml
+    owner: ec2-user
+    group: ec2-user
+    mode: "0644"
+
 
 - name: Create shared Docker network
   community.docker.docker_network:
     name: cloud-platform
     state: present
+
 
 - name: Deploy platform stack
   community.docker.docker_compose_v2:
@@ -51,20 +66,10 @@
       - platform.yml
     state: present
 
-- name: Create prometheus config directory
-  file:
-    path: /opt/cloud-platform/prometheus
-    state: directory
 
-
-- name: Copy prometheus configuration
-  copy:
-    src: prometheus/prometheus.yml
-    dest: /opt/cloud-platform/prometheus/prometheus.yml
-
-#- name: Deploy monitoring stack
-#  community.docker.docker_compose_v2:
-#    project_src: /opt/cloud-platform
-#    files:
-#      - monitoring.yml
-#    state: present
+- name: Deploy monitoring stack
+  community.docker.docker_compose_v2:
+    project_src: /opt/cloud-platform/monitoring
+    files:
+      - docker-compose.yml
+    state: present
