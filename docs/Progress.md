@@ -1,6 +1,6 @@
 # Project Progress
 
-This document tracks the progress of the Cloud Platform Engineering Lab and records completed milestones as the project evolves.
+This document tracks the progress of the Cloud Platform Engineering Lab and records completed milestones, current work and future objectives.
 
 ---
 
@@ -10,15 +10,15 @@ This document tracks the progress of the Cloud Platform Engineering Lab and reco
 
 ## Completed
 
-* Raspberry Pi cloud workstation created
-* Terraform installed
-* AWS CLI installed
-* Git repository created
-* GitHub integration completed
-* SSH identities separated
-* Terraform repository structure created
-* Initial Terraform modules created
-* AWS account created and activated
+- Raspberry Pi cloud engineering workstation created
+- Terraform installed and configured
+- AWS CLI installed and configured
+- Git repository created
+- GitHub integration completed
+- SSH identities separated for different environments
+- Cloud platform repository structure created
+- Initial Terraform module architecture created
+- AWS account created and configured
 
 ---
 
@@ -28,15 +28,15 @@ This document tracks the progress of the Cloud Platform Engineering Lab and reco
 
 ## Completed
 
-* AWS IAM administrative user created
-* AWS CLI configured
-* Terraform authenticated with AWS
-* Terraform bootstrap environment created
-* Amazon S3 remote state bucket deployed
-* Amazon S3 versioning enabled
-* Amazon S3 server-side encryption enabled
-* Amazon DynamoDB state locking table deployed
-* Remote Terraform backend successfully established
+- AWS IAM administration configured
+- AWS CLI authentication configured
+- Terraform AWS provider configured
+- Terraform bootstrap environment created
+- Amazon S3 remote state backend deployed
+- S3 bucket versioning enabled
+- S3 server-side encryption enabled
+- DynamoDB Terraform state locking deployed
+- Remote Terraform backend successfully validated
 
 ---
 
@@ -46,210 +46,331 @@ This document tracks the progress of the Cloud Platform Engineering Lab and reco
 
 ## Completed
 
-* Terraform development environment configured
-* Terraform remote backend connected
-* AWS VPC deployed
-* Public subnet deployed
-* Private subnet deployed
-* Internet Gateway deployed
-* Public Route Table deployed
-* Route Table association configured
-* EC2 Terraform module created
-* EC2 Security Group deployed
-* EC2 SSH key pair configured
-* Amazon Linux EC2 instance deployed
-* Terraform outputs configured for EC2 details
-* Successful EC2 deployment verified
+### Networking
+
+- AWS VPC deployed
+- Public subnet deployed
+- Private subnet deployed
+- Internet Gateway deployed
+- Route tables configured
+- Network routing validated
+
+### Compute
+
+- EC2 Terraform module created
+- Amazon Linux EC2 instance deployed
+- SSH key authentication configured
+- Terraform outputs created
+- EC2 deployment successfully verified
+
+### Security
+
+- AWS Security Group deployed using Infrastructure as Code
+- SSH access restricted
+- Web access rules automated
+- Security configuration managed through Ansible
 
 ---
 
 # Milestone 4 - Cloud Platform Services
 
-**Status:** 🚧 In Progress
+**Status:** ✅ Complete
 
-## Completed
+## Configuration Management
 
-### Configuration Management
+Completed:
 
-* Ansible inventory configured
-* AWS EC2 host management configured
-* Ansible connectivity verified
-* Base server configuration automated
-* Docker installation automated through Ansible
+- Ansible control node configured
+- AWS inventory created
+- SSH connectivity verified
+- Server configuration automated
+- Docker installation automated
+- Repeatable server deployment implemented
 
-### Container Platform
-
-* Docker runtime deployed
-* Docker service enabled
-* Docker user permissions configured
-* Docker Compose deployment automated
-* nginx container deployed
-* Container deployment verified
-
-### Monitoring Platform
-
-Monitoring stack deployed:
-
-* Prometheus
-* Grafana
-* Node Exporter
-* cAdvisor
-
-Verified:
-
-* Containers running successfully
-* Monitoring services reachable
-* Docker monitoring network operational
-
-### Security and Networking
-
-* EC2 Security Group configured
-* SSH access restricted to administrator IP
-* HTTP access enabled for web services
-* HTTPS access prepared
-* Docker proxy network created for reverse proxy architecture
-
-### DNS Migration
-
-Cloud DNS migration started:
-
-* Cloudflare account configured
-* `jrwroberts.co.uk` added to Cloudflare
-* Registrar nameservers updated
-
-Current Cloudflare nameservers:
+Ansible roles created:
 
 ```text
-darwin.ns.cloudflare.com
-pearl.ns.cloudflare.com
-```
+ansible/
+└── roles/
+    ├── common/
+    ├── docker/
+    ├── docker-deploy/
+    ├── monitoring/
+    └── aws-security/
+Container Platform
 
-Status:
+Completed:
 
-⏳ Waiting for DNS propagation
-
----
-
-# Current Tasks
-
-## In Progress
-
-* Complete Cloudflare DNS migration
-* Configure DNS records for AWS services
-* Deploy nginx reverse proxy
-* Enable HTTPS certificates
-* Remove direct public access to application ports
-
-## Planned
-
-* Deploy Loki logging platform
-* Integrate CrowdSec security monitoring
-* Deploy Authelia authentication
-* Configure GitHub Actions CI/CD
-* Explore Kubernetes (k3s)
-
----
-
-# Milestone 5 - Platform Optimisation
-
-**Status:** ⏳ Planned
-
-## Tasks
-
-* Infrastructure monitoring improvements
-* AWS cost monitoring and optimisation
-* Automated infrastructure testing
-* Disaster recovery documentation
-* Multi-environment deployments:
-
-  * Development
-  * Test
-  * Production
-* Platform hardening and security improvements
-* Secrets management implementation
-
----
-
-# Current Project Status
-
-| Milestone                     | Status         |
-| ----------------------------- | -------------- |
-| Foundation                    | ✅ Complete     |
-| AWS Infrastructure Foundation | ✅ Complete     |
-| AWS Infrastructure Deployment | ✅ Complete     |
-| Cloud Platform Services       | 🚧 In Progress |
-| Platform Optimisation         | ⏳ Planned      |
-
----
-
-# Current Architecture
+Docker runtime deployed
+Docker service enabled
+Docker permissions configured
+Docker Compose deployment automated
+nginx container deployed
+Shared Docker network created
+Container deployment verified
 
 Current platform:
 
-```text
+AWS EC2
+
+    |
+    |
+ Docker Engine
+
+    |
+    |
+ Docker Compose
+
+    |
+    +----------------+
+    |                |
+ nginx        Monitoring Platform
+Monitoring Platform
+
+Status: ✅ Complete
+
+Monitoring stack deployed:
+
+Prometheus
+Grafana
+Node Exporter
+cAdvisor
+
+Verified:
+
+Prometheus health endpoint operational
+Grafana service operational
+Node metrics available
+Container metrics available
+Monitoring containers communicating correctly
+
+Current monitoring architecture:
+
+Node Exporter
+      |
+      |
+      v
+ Prometheus
+      |
+      |
+      v
+ Grafana
+
+
+cAdvisor
+      |
+      |
+      v
+Container Metrics
+Milestone 5 - Public Cloud Service Layer
+
+Status: 🚧 In Progress
+
+The platform is now moving from infrastructure deployment into production-style service delivery.
+
+Current Work
+DNS
+
+Completed:
+
+Cloudflare account configured
+Domain added to Cloudflare
+Registrar nameservers updated
+
+Cloudflare nameservers:
+
+darwin.ns.cloudflare.com
+pearl.ns.cloudflare.com
+
+Current status:
+
+🚧 DNS validation and service publishing in progress
+
+Reverse Proxy
+
+Planned:
+
+Configure nginx reverse proxy
+Route services using domain names
+Remove direct application port exposure
+Implement HTTPS termination
+
+Target services:
+
+cloud.jrwroberts.co.uk
+
+grafana.jrwroberts.co.uk
+
+prometheus.jrwroberts.co.uk
+Security Platform
+
+Planned:
+
+HTTPS certificates
+Authentication layer
+Cloudflare security controls
+CrowdSec security monitoring
+Authelia authentication
+Secrets management
+Milestone 6 - Platform Engineering Improvements
+
+Status: ⏳ Planned
+
+Future objectives:
+
+GitHub Actions CI/CD pipelines
+Automated Terraform validation
+Infrastructure testing
+Deployment automation
+Centralised logging with Loki
+Alertmanager integration
+AWS CloudWatch integration
+Cost monitoring and optimisation
+Disaster recovery documentation
+Multi-environment deployments
+
+Target environments:
+
+Development
+
+Test
+
+Production
+Current Project Status
+Component	Status
+Raspberry Pi Workstation	✅ Complete
+GitHub Repository	✅ Complete
+Terraform Installation	✅ Complete
+AWS CLI Configuration	✅ Complete
+Terraform Remote State	✅ Complete
+DynamoDB State Locking	✅ Complete
+AWS Networking	✅ Complete
+EC2 Deployment	✅ Complete
+Security Groups	✅ Complete
+Ansible Automation	✅ Complete
+Docker Platform	✅ Complete
+Monitoring Platform	✅ Complete
+Cloudflare Integration	🚧 In Progress
+nginx Reverse Proxy	🚧 In Progress
+HTTPS	⏳ Planned
+Authentication	⏳ Planned
+Central Logging	⏳ Planned
+CI/CD Automation	⏳ Planned
+Kubernetes	⏳ Planned
+Current Architecture
 Developer Workstation
-        |
-        |
-     Terraform
-        |
-        |
-       AWS
-        |
-        |
-    EC2 Instance
-        |
-        |
-     Ansible
-        |
-        |
- Docker Platform
-        |
-        +----------------+
-        |                |
-      nginx        Monitoring Stack
-                       |
-             +---------+---------+
-             |         |         |
-        Prometheus  Grafana  cAdvisor
-                         |
-                  Node Exporter
-```
+(Raspberry Pi 4)
 
-Future architecture:
+        |
+        |
+        v
 
-```text
+Git Repository
+
+        |
+        |
+        v
+
+Terraform
+
+        |
+        |
+        v
+
+AWS Cloud Platform
+
+        |
+        |
+        v
+
+EC2 Instance
+
+        |
+        |
+        v
+
+Ansible Configuration
+
+        |
+        |
+        v
+
+Docker Platform
+
+        |
+        +-----------------------+
+        |                       |
+        v                       v
+
+     nginx              Monitoring Stack
+
+                             |
+             +---------------+---------------+
+             |               |               |
+             v               v               v
+
+        Prometheus       Grafana        Exporters
+
+Future Architecture
 Internet
-   |
+
+    |
+
 Cloudflare DNS
-   |
+
+    |
+
 HTTPS
-   |
+
+    |
+
 nginx Reverse Proxy
-   |
+
+    |
+
 Docker Services
-   |
-Monitoring + Security Platform
-```
 
----
+    |
 
-# Next Milestone
+Monitoring + Logging + Security
 
-The next objective is to complete the public cloud service layer.
+    |
 
-Planned work:
+Automated Cloud Platform
+Project Vision
 
-* Complete Cloudflare DNS migration
-* Configure nginx reverse proxy
-* Deploy HTTPS certificates
-* Publish services using domain names:
+The objective is to demonstrate a complete modern Cloud Platform Engineering workflow:
 
-  * cloud.jrwroberts.co.uk
-  * grafana.jrwroberts.co.uk
-  * prometheus.jrwroberts.co.uk
-* Add authentication layer
-* Improve security controls
+Local Development
 
----
+        |
 
-**Last Updated:** 18 July 2026
+Git Version Control
+
+        |
+
+Infrastructure as Code
+
+        |
+
+AWS Cloud Infrastructure
+
+        |
+
+Configuration Automation
+
+        |
+
+Container Platform
+
+        |
+
+Monitoring and Observability
+
+        |
+
+Secure Production-style Services
+
+Author: James Roberts
+
+Last Updated: 18 July 2026
