@@ -8,6 +8,8 @@ services:
       - ../monitoring/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
     ports:
       - "9090:9090"
+    networks:
+      - proxy
 
 
   grafana:
@@ -16,6 +18,8 @@ services:
     restart: unless-stopped
     ports:
       - "3000:3000"
+    networks:
+      - proxy
 
 
   node-exporter:
@@ -24,6 +28,8 @@ services:
     restart: unless-stopped
     ports:
       - "9100:9100"
+    networks:
+      - proxy
 
 
   cadvisor:
@@ -37,3 +43,11 @@ services:
       - /var/run:/var/run:ro
       - /sys:/sys:ro
       - /var/lib/docker/:/var/lib/docker:ro
+    networks:
+      - proxy
+
+
+networks:
+
+  proxy:
+    external: true
