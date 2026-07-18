@@ -1,4 +1,4 @@
-#Cloud Platform Engineering Lab
+# Cloud Platform Engineering Lab
 
 A production-style cloud engineering project demonstrating Infrastructure as Code, automation, monitoring, security, and DevOps practices using AWS, Terraform, Ansible, Docker and Kubernetes.
 
@@ -21,7 +21,7 @@ The project is being built incrementally using industry best practices and serve
 
 # Learning Objectives
 
-This repository is being developed as a practical cloud engineering portfolio to demonstrate experience with:
+This repository is being developed as a practical cloud engineering portfolio demonstrating experience with:
 
 - AWS Cloud
 - Infrastructure as Code (Terraform)
@@ -30,7 +30,7 @@ This repository is being developed as a practical cloud engineering portfolio to
 - DevOps
 - Platform Engineering
 - Cloud Security
-- Monitoring & Observability
+- Monitoring and Observability
 - GitOps workflows
 
 ---
@@ -55,14 +55,14 @@ This repository is being developed as a practical cloud engineering portfolio to
 # Current Status
 
 | Phase | Status |
-|--------|--------|
+|---|---|
 | Project Foundation | ✅ Complete |
 | AWS Bootstrap (Terraform Remote State) | ✅ Complete |
 | AWS Networking | ✅ Complete |
 | EC2 Compute | ✅ Complete |
 | Configuration Management (Ansible) | 🚧 In Progress |
 | Container Platform | ⬜ Planned |
-| Monitoring & Observability | ⬜ Planned |
+| Monitoring and Observability | ⬜ Planned |
 | CI/CD (GitHub Actions) | ⬜ Planned |
 | Kubernetes (k3s) | ⬜ Planned |
 
@@ -96,7 +96,7 @@ cloud-platform/
 │
 ├── .github/
 │   └── workflows/
-│       └── GitHub Actions workflows (planned)
+│       └── GitHub Actions workflows
 │
 ├── ansible/
 │   ├── inventory/
@@ -121,7 +121,7 @@ cloud-platform/
 │   └── Screenshots and supporting images
 │
 ├── kubernetes/
-│   └── Kubernetes manifests and Helm charts (planned)
+│   └── Kubernetes manifests and Helm charts
 │
 ├── scripts/
 │   └── Automation and utility scripts
@@ -147,57 +147,153 @@ cloud-platform/
 ├── CONTRIBUTING.md
 ├── LICENSE
 └── README.md
-Directory Overview
-Directory	Purpose
-.github/workflows	GitHub Actions workflows for Continuous Integration and Continuous Deployment.
-ansible	Server configuration, inventories, playbooks and reusable automation roles.
-diagrams	Architecture diagrams, network topology diagrams and infrastructure illustrations.
-docker	Docker Compose files and container configurations.
-docs	Project documentation, architecture decisions, deployment guides and progress tracking.
-images	Screenshots, diagrams and supporting documentation images.
-kubernetes	Kubernetes manifests, Helm charts and future GitOps resources.
-scripts	Utility scripts used to automate common development tasks.
-terraform/bootstrap	Terraform configuration used to create remote state infrastructure.
-terraform/environments	Environment-specific Terraform deployments.
-terraform/modules	Reusable Terraform modules shared between environments.
-Project Design Principles
+```
 
-The repository is organised using modern Infrastructure as Code and Platform Engineering practices.
+---
+
+# Directory Overview
+
+| Directory | Purpose |
+|---|---|
+| `.github/workflows` | GitHub Actions workflows for Continuous Integration and Continuous Deployment |
+| `ansible` | Server configuration, inventories, playbooks and reusable automation roles |
+| `diagrams` | Architecture diagrams, network topology diagrams and infrastructure illustrations |
+| `docker` | Docker Compose files and container configurations |
+| `docs` | Project documentation, architecture decisions, deployment guides and progress tracking |
+| `images` | Screenshots, diagrams and supporting documentation images |
+| `kubernetes` | Kubernetes manifests, Helm charts and future GitOps resources |
+| `scripts` | Utility scripts used to automate common development tasks |
+| `terraform/bootstrap` | Terraform configuration used to create remote state infrastructure |
+| `terraform/environments` | Environment-specific Terraform deployments |
+| `terraform/modules` | Reusable Terraform modules shared between environments |
+
+---
+
+# Project Design Principles
+
+The repository follows modern Infrastructure as Code and Platform Engineering practices.
 
 Key principles include:
 
-Infrastructure managed entirely as code.
-Modular and reusable Terraform architecture.
-Clear separation between reusable modules and environments.
-Configuration management through Ansible.
-Version-controlled infrastructure using Git and GitHub.
-Security-first design.
-Documentation maintained alongside source code.
-Automation-first approach using Terraform, Ansible and GitHub Actions.
-Designed to support Development, Test and Production environments.
-Next Milestone
+- Infrastructure managed entirely as code
+- Modular and reusable Terraform architecture
+- Clear separation between reusable modules and environments
+- Configuration management through Ansible
+- Version-controlled infrastructure using Git and GitHub
+- Security-first design
+- Documentation maintained alongside source code
+- Automation-first approach using Terraform, Ansible and GitHub Actions
+- Designed to support Development, Test and Production environments
 
-The next phase of the project is to build the container platform layer.
+---
+
+# Completed Milestones
+
+## AWS Infrastructure
+
+Completed:
+
+- Terraform project structure
+- Remote Terraform backend
+- Amazon S3 state storage
+- DynamoDB state locking
+- AWS VPC deployment
+- Public subnet deployment
+- Private subnet deployment
+- Internet Gateway configuration
+- Route table configuration
+- Security Group deployment
+- EC2 deployment
+- Terraform outputs
+
+---
+
+## Configuration Management
+
+Completed:
+
+- Ansible installed
+- AWS dynamic inventory created
+- SSH connectivity verified
+- Initial Ansible role structure created
+
+---
+
+# Current Work
+
+The project is currently moving into the cloud platform services layer.
+
+Current objectives:
+
+- Configure EC2 using Ansible
+- Install Docker runtime
+- Deploy container platform
+- Configure Docker Compose
+- Deploy monitoring services
+- Implement security tooling
+- Begin CI/CD automation
+
+---
+
+# Next Milestone
+
+The next phase of the project is building the container platform layer.
 
 Planned work includes:
 
-Complete Docker deployment using Ansible
-Configure Docker Compose
-Deploy first container workloads
-Build monitoring platform
-Implement security tooling
-Begin CI/CD automation
-Long-Term Roadmap
+- Complete Docker deployment using Ansible
+- Install Docker Engine
+- Configure Docker Compose
+- Deploy first container workloads
+- Build monitoring platform
+- Implement security services
+- Begin GitHub Actions automation
+
+---
+
+# Long-Term Roadmap
 
 Future enhancements include:
 
-Kubernetes (k3s) cluster deployment
-GitHub Actions deployment pipeline
-Automated infrastructure testing
-Monitoring and observability platform
-Centralised logging
-Cost monitoring and optimisation
-Security hardening
-Secrets management
-Disaster recovery documentation
-Hybrid cloud integration with the on-premises homelab
+- Kubernetes (k3s) cluster deployment
+- GitHub Actions deployment pipeline
+- Automated infrastructure testing
+- Monitoring and observability platform
+- Centralised logging
+- Cost monitoring and optimisation
+- Security hardening
+- Secrets management
+- Disaster recovery documentation
+- Hybrid cloud integration with the on-premises homelab
+
+---
+
+# Project Vision
+
+The goal of this project is to demonstrate a complete cloud engineering workflow:
+
+```text
+Local Development
+        |
+        v
+GitHub Version Control
+        |
+        v
+Terraform Infrastructure as Code
+        |
+        v
+AWS Cloud Infrastructure
+        |
+        v
+Ansible Configuration Management
+        |
+        v
+Docker Platform
+        |
+        v
+Monitoring, Security and Automation
+```
+
+---
+
+**Last Updated:** 18 July 2026
