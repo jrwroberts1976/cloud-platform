@@ -1,18 +1,23 @@
+# Python virtual environment
+.venv/
+
 # Terraform
 .terraform/
 *.tfstate
 *.tfstate.*
 *.tfvars
 
-# AWS
-*.pem
+# AWS credentials
+.aws/
 
-# Environment
+# Secrets
 .env
+*.pem
+*.key
+*.crt
 
-# Python
-__pycache__/
-*.pyc
+# Ansible
+*.retry
 
-# Editors
-.vscode/
+# OS files
+.DS_Store
