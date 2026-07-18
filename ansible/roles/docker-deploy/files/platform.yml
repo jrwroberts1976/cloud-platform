@@ -9,7 +9,7 @@ services:
       - "80:80"
 
     volumes:
-      - ./nginx/cloud-platform.conf:/etc/nginx/conf.d/cloud-platform.conf:ro
+      - ./nginx:/etc/nginx/conf.d
 
     networks:
       - cloud-platform
