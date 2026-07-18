@@ -62,9 +62,9 @@
     src: prometheus/prometheus.yml
     dest: /opt/cloud-platform/prometheus/prometheus.yml
 
-- name: Deploy monitoring stack
-  community.docker.docker_compose_v2:
-    project_src: /opt/cloud-platform
-    files:
-      - monitoring.yml
-    state: present
+#- name: Deploy monitoring stack
+#  community.docker.docker_compose_v2:
+#    project_src: /opt/cloud-platform
+#    files:
+#      - monitoring.yml
+#    state: present
