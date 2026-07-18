@@ -1,0 +1,21 @@
+---
+- name: Install Docker packages
+  become: true
+  dnf:
+    name:
+      - docker
+    state: present
+
+- name: Enable Docker service
+  become: true
+  systemd:
+    name: docker
+    enabled: true
+    state: started
+
+- name: Add ec2-user to docker group
+  become: true
+  user:
+    name: ec2-user
+    groups: docker
+    append: true

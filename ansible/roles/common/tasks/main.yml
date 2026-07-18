@@ -1,0 +1,16 @@
+---
+- name: Update all packages
+  become: true
+  dnf:
+    name: "*"
+    state: latest
+
+- name: Install useful tools
+  become: true
+  dnf:
+    name:
+      - vim
+      - git
+      - wget
+      - unzip
+    state: present
