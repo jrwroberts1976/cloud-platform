@@ -5,6 +5,8 @@ services:
     container_name: prometheus
     networks:
       - cloud-platform
+    ports:
+      - "9090:9090"
 
 
   grafana:
@@ -12,6 +14,8 @@ services:
     container_name: grafana
     networks:
       - cloud-platform
+    ports:
+      - "3000:3000"
 
 
   node-exporter:
@@ -19,6 +23,8 @@ services:
     container_name: node-exporter
     networks:
       - cloud-platform
+    ports:
+      - "9100:9100"
 
 
   cadvisor:
@@ -26,6 +32,8 @@ services:
     container_name: cadvisor
     networks:
       - cloud-platform
+    ports:
+      - "8080:8080"
 
 
 networks:
