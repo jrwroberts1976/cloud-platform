@@ -5,21 +5,55 @@
     state: directory
     owner: ec2-user
     group: ec2-user
-    mode: '0755'
+    mode: "0755"
 
-
-- name: Copy Docker Compose application file
+- name: Copy platform compose file
   ansible.builtin.copy:
-    src: applications.yml
-    dest: /opt/cloud-platform/applications.yml
+    src: platform.yml
+    dest: /opt/cloud-platform/platform.yml
     owner: ec2-user
     group: ec2-user
-    mode: '0644'
+    mode: "0644"
 
+- name: Copy monitoring compose file
+  ansible.builtin.copy:
+    src: monitoring.yml
+    dest: /opt/cloud-platform/monitoring.yml
+    owner: ec2-user
+    group: ec2-user
+    mode: "0644"
 
-- name: Deploy Docker Compose stack
+- name: Create Prometheus configuration directory
+  ansible.builtin.file:
+    path: /opt/cloud-platform/prometheus
+    state: directory
+    owner: ec2-user
+    group: ec2-user
+    mode: "0755"
+
+- name: Copy Prometheus configuration
+  ansible.builtin.copy:
+    src: prometheus.yml
+    dest: /opt/cloud-platform/prometheus/prometheus.yml
+    owner: ec2-user
+    group: ec2-user
+    mode: "0644"
+
+- name: Create shared Docker network
+  community.docker.docker_network:
+    name: cloud-platform
+    state: present
+
+- name: Deploy platform stack
   community.docker.docker_compose_v2:
     project_src: /opt/cloud-platform
     files:
-      - applications.yml
+      - platform.yml
+    state: present
+
+- name: Deploy monitoring stack
+  community.docker.docker_compose_v2:
+    project_src: /opt/cloud-platform
+    files:
+      - monitoring.yml
     state: present

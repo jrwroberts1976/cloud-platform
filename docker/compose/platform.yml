@@ -1,18 +1,16 @@
-version: "3.8"
-
 services:
 
   nginx:
     image: nginx:latest
     container_name: cloud-platform-nginx
     restart: unless-stopped
+
     ports:
       - "80:80"
-    networks:
-      - proxy
 
+    networks:
+      - cloud-platform
 
 networks:
-
-  proxy:
+  cloud-platform:
     external: true
