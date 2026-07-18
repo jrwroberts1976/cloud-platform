@@ -1,61 +1,67 @@
 # Cloud Platform Engineering Lab
 
-A production-style cloud engineering project demonstrating Infrastructure as Code, automation, monitoring, security, and DevOps practices using AWS, Terraform, Ansible, Docker, Cloudflare and Kubernetes.
+A production-style cloud engineering project demonstrating Infrastructure as Code, automation, container platforms, monitoring, security and DevOps practices using AWS, Terraform, Ansible, Docker and modern platform engineering principles.
 
-The project is being built incrementally using industry best practices and serves as both a learning platform and a professional portfolio demonstrating modern cloud engineering skills.
-
----
-
-# Project Goals
-
-* Provision AWS infrastructure using Terraform Infrastructure as Code
-* Build reusable Terraform modules for scalable deployments
-* Implement secure cloud networking and identity management
-* Automate server configuration using Ansible
-* Deploy containerised workloads using Docker
-* Implement monitoring, logging and observability
-* Automate infrastructure deployments using GitHub Actions
-* Demonstrate production-style DevOps and Platform Engineering practices
+This project is being developed incrementally using industry practices and serves as a practical portfolio demonstrating cloud infrastructure deployment, automation and operational skills.
 
 ---
 
-# Learning Objectives
+# Project Objectives
+
+The goal of this project is to build a complete cloud platform lifecycle:
+
+* Provision cloud infrastructure using Terraform
+* Automate configuration using Ansible
+* Deploy container platforms using Docker
+* Implement monitoring and observability
+* Secure cloud workloads
+* Automate deployments through GitOps practices
+* Build foundations for Kubernetes adoption
+
+---
+
+# Skills Demonstrated
 
 This repository demonstrates practical experience with:
 
-* AWS Cloud
+* AWS Cloud Infrastructure
 * Infrastructure as Code (Terraform)
-* Linux Administration
 * Configuration Management (Ansible)
-* Container Platforms (Docker)
-* DevOps Automation
-* Platform Engineering
-* Cloud Security
+* Linux Administration
+* Docker and container platforms
 * Monitoring and Observability
-* GitOps workflows
+* Networking and Security
+* Reverse Proxy Architecture
+* Git-based workflows
+* Platform Engineering concepts
 
 ---
 
 # Technology Stack
 
-## Cloud Infrastructure
+## Cloud Platform
 
 * AWS
 * Amazon VPC
 * Amazon EC2
 * Amazon S3
 * DynamoDB Terraform State Locking
+* Security Groups
+* IAM
 
 ## Infrastructure as Code
 
 * Terraform
 * Modular Terraform architecture
 * Remote state management
+* Environment-based deployments
 
-## Automation
+## Configuration Management
 
 * Ansible
-* GitHub Actions (planned)
+* Ansible Roles
+* Automated server configuration
+* SSH-based deployment
 
 ## Container Platform
 
@@ -69,73 +75,99 @@ This repository demonstrates practical experience with:
 * Grafana
 * Node Exporter
 * cAdvisor
-* Loki (planned)
+
+Planned:
+
+* Loki
+* Promtail
+* Alertmanager
 
 ## Security
 
+Implemented:
+
+* AWS Security Groups
+* Restricted SSH access
+* Automated firewall rule management
+
+Planned:
+
 * Cloudflare DNS
-* CrowdSec (planned)
-* Authelia (planned)
+* HTTPS certificates
+* CrowdSec
+* Authelia authentication
 
 ## Future Platform
 
+Planned:
+
 * Kubernetes (k3s)
+* GitHub Actions CI/CD
+* GitOps deployment workflow
 
 ---
 
 # Current Status
 
-| Phase                                  | Status         |
-| -------------------------------------- | -------------- |
-| Project Foundation                     | ✅ Complete     |
-| AWS Bootstrap (Terraform Remote State) | ✅ Complete     |
-| AWS Networking                         | ✅ Complete     |
-| EC2 Compute                            | ✅ Complete     |
-| Configuration Management (Ansible)     | ✅ Complete     |
-| Container Platform                     | ✅ Complete     |
-| Monitoring and Observability           | 🚧 In Progress |
-| DNS and Reverse Proxy                  | 🚧 In Progress |
-| Security Platform                      | ⬜ Planned      |
-| CI/CD (GitHub Actions)                 | ⬜ Planned      |
-| Kubernetes (k3s)                       | ⬜ Planned      |
+| Component | Status |
+|---|---|
+| Terraform AWS foundation | ✅ Complete |
+| Remote Terraform state | ✅ Complete |
+| AWS networking | ✅ Complete |
+| EC2 deployment | ✅ Complete |
+| Security Groups | ✅ Complete |
+| Ansible automation | ✅ Complete |
+| Docker deployment | ✅ Complete |
+| Monitoring stack | ✅ Complete |
+| Grafana platform | ✅ Complete |
+| Prometheus monitoring | ✅ Complete |
+| Reverse proxy | 🚧 In Progress |
+| HTTPS certificates | ⬜ Planned |
+| Central logging | ⬜ Planned |
+| CI/CD automation | ⬜ Planned |
+| Kubernetes platform | ⬜ Planned |
 
 ---
 
 # Current Architecture
 
-The platform currently includes:
-
-* Raspberry Pi cloud engineering workstation
-* AWS infrastructure managed through Terraform
-* Remote Terraform state stored in Amazon S3
-* Terraform state locking using DynamoDB
-* AWS VPC networking
-* Public and private subnets
-* Internet Gateway and routing configuration
-* EC2 compute instance
-* Restricted SSH security group access
-* Automated server configuration using Ansible
-* Docker container platform
-* Monitoring stack deployment
-
-Current deployed services:
+The current platform runs on AWS EC2 with infrastructure created through Terraform and configured automatically using Ansible.
 
 ```text
-AWS EC2 Instance
-        |
-        |
-     Docker
-        |
-        +----------------+
-        |                |
-      nginx          Monitoring
-                       |
-          +------------+-------------+
-          |            |             |
-     Prometheus     Grafana     Node Exporter
-                                    |
-                                cAdvisor
+                    Git Repository
+                         |
+                         |
+                    Ansible
+                         |
+                         |
+                    AWS EC2
+                         |
+                    Docker Platform
+                         |
+        +----------------+----------------+
+        |                |                |
+      nginx         Monitoring        Future Apps
+                         |
+        +----------------+----------------+
+        |                |                |
+   Prometheus        Grafana        Node Exporter
+                                         |
+                                     cAdvisor
 ```
+
+---
+
+# Current Deployment
+
+The AWS instance currently runs:
+
+| Service | Purpose | Port |
+|---|---|---|
+| nginx | Web entry point | 80 |
+| Prometheus | Metrics collection | 9090 |
+| Grafana | Dashboards | 3000 |
+| Node Exporter | Host metrics | 9100 |
+| cAdvisor | Container metrics | 8080 |
 
 ---
 
@@ -143,92 +175,56 @@ AWS EC2 Instance
 
 ```text
 cloud-platform/
-│
-├── .github/
-│   └── workflows/
-│       └── GitHub Actions workflows
-│
+
 ├── ansible/
 │   ├── inventory/
 │   ├── playbooks/
 │   └── roles/
 │
-├── diagrams/
-│   └── Architecture diagrams
-│
 ├── docker/
-│   ├── compose/
-│   │   ├── applications.yml
-│   │   └── monitoring.yml
-│   └── monitoring/
+│   └── compose/
 │
 ├── docs/
 │   ├── Architecture.md
-│   ├── Blockers.md
 │   ├── Decisions.md
 │   ├── Deployment.md
-│   ├── Progress.md
-│   └── ProjectRoadmap.md
-│
-├── kubernetes/
-│   └── Kubernetes manifests and Helm charts
-│
-├── scripts/
-│   └── Automation scripts
+│   └── Roadmap.md
 │
 ├── terraform/
 │   ├── bootstrap/
 │   ├── environments/
 │   │   ├── dev/
-│   │   ├── test/
 │   │   └── prod/
+│   │
 │   └── modules/
 │       ├── ec2/
-│       ├── iam/
-│       ├── monitoring/
 │       ├── networking/
-│       └── security-groups/
+│       ├── security/
+│       └── iam/
+│
+├── scripts/
 │
 └── README.md
 ```
 
 ---
 
-# Directory Overview
-
-| Directory                | Purpose                                            |
-| ------------------------ | -------------------------------------------------- |
-| `.github/workflows`      | CI/CD automation workflows                         |
-| `ansible`                | Server configuration and automation                |
-| `docker`                 | Container deployments and monitoring configuration |
-| `docs`                   | Project documentation and decisions                |
-| `diagrams`               | Architecture and infrastructure diagrams           |
-| `kubernetes`             | Future Kubernetes manifests                        |
-| `scripts`                | Automation utilities                               |
-| `terraform/bootstrap`    | Terraform backend creation                         |
-| `terraform/environments` | Environment-specific deployments                   |
-| `terraform/modules`      | Reusable Terraform modules                         |
-
----
-
-# Completed Milestones
+# Completed Work
 
 ## AWS Infrastructure
 
 Completed:
 
-* Terraform project structure
-* Remote Terraform backend
-* Amazon S3 state storage
-* DynamoDB state locking
-* AWS VPC deployment
-* Public subnet deployment
-* Private subnet deployment
-* Internet Gateway configuration
-* Route table configuration
-* Security Group deployment
-* EC2 deployment
-* Terraform outputs
+✅ Terraform project structure  
+✅ Remote state backend  
+✅ S3 state storage  
+✅ DynamoDB state locking  
+✅ VPC deployment  
+✅ Public subnet deployment  
+✅ Internet Gateway  
+✅ Routing configuration  
+✅ Security Groups  
+✅ EC2 deployment  
 
 ---
 
@@ -236,12 +232,12 @@ Completed:
 
 Completed:
 
-* Ansible installation
-* AWS EC2 inventory
-* SSH connectivity
-* Server configuration automation
-* Docker installation automation
-* Container deployment automation
+✅ Ansible installation  
+✅ AWS inventory management  
+✅ SSH automation  
+✅ Server configuration  
+✅ Docker installation  
+✅ Automated application deployment  
 
 ---
 
@@ -249,30 +245,31 @@ Completed:
 
 Completed:
 
-* Docker runtime deployment
-* Docker Compose deployment
-* nginx deployment
-* Shared Docker proxy network
-* Monitoring containers deployed
+✅ Docker runtime  
+✅ Docker Compose deployments  
+✅ Shared Docker networking  
+✅ nginx deployment  
+✅ Monitoring platform deployment  
 
 ---
 
-# Current Work
+# Current Development Focus
 
-The project is currently moving into the platform access and security layer.
+The project is now moving from infrastructure deployment into the platform access and security phase.
 
-Current objectives:
+Next objectives:
 
-* Complete Cloudflare DNS migration
-* Configure nginx reverse proxy
-* Deploy HTTPS certificates
-* Publish services using domain names
-* Add authentication controls
-* Expand monitoring and logging
+* Configure Cloudflare DNS
+* Deploy nginx reverse proxy
+* Enable HTTPS certificates
+* Remove direct port exposure
+* Add authentication
+* Implement central logging
+* Add monitoring alerts
 
 Target services:
 
-```text
+```
 cloud.jrwroberts.co.uk
 
 grafana.jrwroberts.co.uk
@@ -282,68 +279,99 @@ prometheus.jrwroberts.co.uk
 
 ---
 
-# Next Milestone
+# Roadmap
 
-The next phase is completing the public cloud service layer.
+## Phase 1 - Cloud Foundation ✅
 
-Planned work:
+Completed:
 
-* Finish Cloudflare DNS migration
-* Configure nginx reverse proxy
-* Enable HTTPS
-* Remove direct application port exposure
-* Add security controls
-* Implement centralised logging
-* Begin CI/CD automation
+* AWS infrastructure
+* Terraform automation
+* EC2 deployment
+* Security configuration
 
 ---
 
-# Long-Term Roadmap
+## Phase 2 - Platform Layer ✅
 
-Future enhancements:
+Completed:
 
-* Kubernetes (k3s) deployment
-* GitHub Actions deployment pipeline
-* Automated infrastructure testing
-* Centralised logging with Loki
-* Cost monitoring and optimisation
-* Security hardening
-* Secrets management
-* Disaster recovery documentation
+* Docker platform
+* Application deployment
+* Monitoring stack
+
+---
+
+## Phase 3 - Secure Cloud Access 🚧
+
+Planned:
+
+* Reverse proxy
+* HTTPS
+* DNS integration
+* Authentication
+
+---
+
+## Phase 4 - Operations Platform
+
+Planned:
+
+* Central logging
+* Alerting
+* Backup strategy
+* Disaster recovery testing
+
+---
+
+## Phase 5 - Advanced Platform Engineering
+
+Planned:
+
+* Kubernetes
+* GitHub Actions
+* GitOps workflows
 * Multi-environment deployments
-* Hybrid cloud integration with the homelab
 
 ---
 
 # Project Vision
 
-The goal is to demonstrate a complete cloud engineering workflow:
+The aim is to demonstrate a complete modern cloud engineering workflow:
 
 ```text
-Local Development
+Developer Machine
         |
         v
-GitHub Version Control
+Git Repository
         |
         v
 Terraform Infrastructure as Code
         |
         v
-AWS Cloud Infrastructure
+AWS Cloud Platform
         |
         v
-Ansible Configuration Management
+Ansible Automation
         |
         v
 Docker Platform
         |
         v
-Reverse Proxy and DNS
+Monitoring & Observability
         |
         v
-Monitoring, Security and Automation
+Secure Production-style Services
 ```
 
 ---
 
-**Last Updated:** 18 July 2026
+# Author
+
+James Roberts
+
+Cloud Platform Engineering Lab
+
+---
+
+**Last Updated: 18 July 2026**
