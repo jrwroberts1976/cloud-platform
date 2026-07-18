@@ -1,87 +1,106 @@
-# Project Blockers
+# Blocker Update - Cloudflare DNS Migration
 
-This document records issues that prevent progress on the project, along with their resolution.
+**Date:** 18 July 2026
+
+## Current Blocker
+
+The migration of `jrwroberts.co.uk` DNS management from the existing registrar DNS service to Cloudflare is currently waiting for nameserver propagation.
+
+## Completed
+
+* Cloudflare account created.
+* Domain `jrwroberts.co.uk` added to Cloudflare.
+* Free Cloudflare plan selected.
+* Registrar nameservers updated successfully.
+* New Cloudflare nameservers configured:
+
+```
+darwin.ns.cloudflare.com
+pearl.ns.cloudflare.com
+```
+
+## Current Status
+
+Cloudflare is waiting for the domain delegation change to propagate.
+
+Current verification message:
+
+```
+Waiting for your registrar to propagate your new nameservers
+```
+
+DNS queries are still showing the previous nameservers from the registrar:
+
+```
+ns11.domaincontrol.com
+ns12.domaincontrol.com
+```
+
+## Impact
+
+The following platform changes are temporarily paused:
+
+* Cloudflare DNS records
+* AWS EC2 hostname mapping
+* Public service DNS names
+* HTTPS reverse proxy configuration
+* External access through domain names
+
+The AWS infrastructure and Docker platform remain fully operational using the EC2 public IP address.
+
+## Current Platform Status
+
+Completed:
+
+* AWS VPC deployed
+* Public and private networking configured
+* EC2 instance deployed
+* Security groups configured
+* Ansible automation working
+* Docker installed automatically through Ansible
+* Docker application deployment working
+* Monitoring stack deployed:
+
+  * Prometheus
+  * Grafana
+  * Node Exporter
+  * cAdvisor
+* Docker proxy network created for reverse proxy preparation
+
+## Next Actions Once DNS Is Active
+
+1. Verify Cloudflare nameserver delegation.
+2. Create Cloudflare DNS records:
+
+   * `cloud.jrwroberts.co.uk`
+   * `grafana.jrwroberts.co.uk`
+   * `prometheus.jrwroberts.co.uk`
+3. Configure nginx reverse proxy.
+4. Enable HTTPS certificates.
+5. Remove direct public exposure of application ports.
+6. Integrate authentication and security controls.
+
+## Resolution Criteria
+
+The blocker will be considered resolved when:
+
+```text
+dig NS jrwroberts.co.uk
+```
+
+returns:
+
+```
+darwin.ns.cloudflare.com
+pearl.ns.cloudflare.com
+```
+
+and Cloudflare reports the domain status as:
+
+```
+Active
+```
 
 ---
 
-# Current Status
-
-**There are currently no active project blockers.**
-
-Development is continuing as planned.
-
----
-
-# Resolved Blockers
-
-## AWS Account Activation
-
-**Status:** ✅ Resolved
-
-**Date Identified:** 17 July 2026
-
-**Date Resolved:** 17 July 2026
-
-### Description
-
-Initial AWS infrastructure deployment was blocked while waiting for AWS account activation and verification.
-
-The local development environment was completed during this period, including:
-
-* Raspberry Pi 4 cloud engineering workstation
-* Terraform installation
-* AWS CLI installation
-* GitHub repository creation
-* Terraform project structure
-* Reusable Terraform modules
-* Project documentation
-
-### Resolution
-
-AWS account activation completed successfully.
-
-The following prerequisites are now available:
-
-* AWS account active
-* IAM administrative user created
-* Programmatic access configured
-* Ready to configure AWS CLI credentials
-* Ready to begin Terraform deployments
-
-### Outcome
-
-The project can now progress to infrastructure deployment using Terraform.
-
----
-
-# Future Blocker Process
-
-Any future blockers will be recorded in this document using the following format:
-
-* Description of the issue
-* Date identified
-* Impact on the project
-* Workaround (if available)
-* Resolution
-* Lessons learned
-
-Maintaining a blocker log provides visibility into project risks and documents how issues were resolved throughout the project lifecycle.
-
----
-
-# Next Phase
-
-The project now moves into **AWS Infrastructure Deployment**.
-
-Immediate priorities are:
-
-1. Configure AWS CLI authentication.
-2. Verify AWS access using AWS STS.
-3. Create the Terraform remote backend (S3 and DynamoDB).
-4. Deploy the AWS Virtual Private Cloud (VPC).
-5. Deploy supporting networking components.
-6. Launch the first EC2 instance.
-
----
-
-*Last Updated: 17 July 2026*
+**Blocker Status:** ⏳ Waiting on DNS propagation
