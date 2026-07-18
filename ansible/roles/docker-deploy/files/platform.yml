@@ -4,12 +4,18 @@ services:
     image: nginx:latest
     container_name: cloud-platform-nginx
     restart: unless-stopped
+
     ports:
       - "80:80"
+
+    volumes:
+      - ./nginx/cloud-platform.conf:/etc/nginx/conf.d/cloud-platform.conf:ro
+
     networks:
       - cloud-platform
 
 
 networks:
+
   cloud-platform:
     external: true
