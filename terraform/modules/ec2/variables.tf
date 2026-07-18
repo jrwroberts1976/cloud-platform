@@ -9,7 +9,7 @@ variable "vpc_id" {
 
 variable "subnet_id" {
 
-  description = "Subnet ID for EC2 instance"
+  description = "Subnet ID"
 
   type = string
 
@@ -27,7 +27,7 @@ variable "environment" {
 
 variable "key_name" {
 
-  description = "EC2 key pair name"
+  description = "SSH key pair name"
 
   type = string
 
@@ -41,5 +41,14 @@ variable "instance_type" {
   type = string
 
   default = "t3.micro"
+
+}
+
+
+variable "admin_ip" {
+
+  description = "Administrator public IP address allowed to SSH"
+
+  type = string
 
 }

@@ -26,7 +26,26 @@ resource "aws_security_group" "ec2" {
 
     protocol = "tcp"
 
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = [
+      "${var.admin_ip}/32"
+    ]
+
+  }
+
+
+  ingress {
+
+    description = "HTTP access through nginx"
+
+    from_port = 80
+
+    to_port = 80
+
+    protocol = "tcp"
+
+    cidr_blocks = [
+      "0.0.0.0/0"
+    ]
 
   }
 
@@ -39,7 +58,9 @@ resource "aws_security_group" "ec2" {
 
     protocol = "-1"
 
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = [
+      "0.0.0.0/0"
+    ]
 
   }
 
@@ -63,9 +84,11 @@ resource "aws_instance" "main" {
 
   subnet_id = var.subnet_id
 
+
   vpc_security_group_ids = [
     aws_security_group.ec2.id
   ]
+
 
   key_name = aws_key_pair.main.key_name
 
