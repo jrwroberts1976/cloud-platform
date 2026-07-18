@@ -4,12 +4,11 @@ services:
     image: nginx:latest
     container_name: cloud-platform-nginx
     restart: unless-stopped
-
     ports:
       - "80:80"
-
     networks:
       - cloud-platform
+
 
 networks:
   cloud-platform:
