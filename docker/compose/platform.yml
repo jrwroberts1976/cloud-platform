@@ -2,7 +2,6 @@ services:
 
   nginx:
     image: nginx:latest
-    container_name: cloud-platform-nginx
     restart: unless-stopped
 
     ports:
@@ -11,6 +10,8 @@ services:
     networks:
       - cloud-platform
 
+
 networks:
+
   cloud-platform:
     external: true

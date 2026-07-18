@@ -2,21 +2,25 @@ services:
 
   prometheus:
     image: prom/prometheus:latest
-    container_name: prometheus
     restart: unless-stopped
 
     volumes:
-      - ../prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - /opt/cloud-platform/monitoring/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus-data:/prometheus
 
     ports:
       - "9090:9090"
 
     networks:
       - cloud-platform
+
+
   grafana:
     image: grafana/grafana:latest
-    container_name: grafana
     restart: unless-stopped
+
+    volumes:
+      - grafana-data:/var/lib/grafana
 
     ports:
       - "3000:3000"
@@ -24,9 +28,9 @@ services:
     networks:
       - cloud-platform
 
+
   node-exporter:
     image: prom/node-exporter:latest
-    container_name: node-exporter
     restart: unless-stopped
 
     ports:
@@ -35,13 +39,10 @@ services:
     networks:
       - cloud-platform
 
+
   cadvisor:
     image: gcr.io/cadvisor/cadvisor:latest
-    container_name: cadvisor
     restart: unless-stopped
-
-    ports:
-      - "8080:8080"
 
     volumes:
       - /:/rootfs:ro
@@ -49,9 +50,20 @@ services:
       - /sys:/sys:ro
       - /var/lib/docker/:/var/lib/docker:ro
 
+    ports:
+      - "8080:8080"
+
     networks:
       - cloud-platform
 
+
+volumes:
+
+  prometheus-data:
+  grafana-data:
+
+
 networks:
+
   cloud-platform:
     external: true
