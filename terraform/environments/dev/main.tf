@@ -13,3 +13,18 @@ module "networking" {
   environment = var.environment
 
 }
+
+
+module "ec2" {
+
+  source = "../../modules/ec2"
+
+  vpc_id = module.networking.vpc_id
+
+  subnet_id = module.networking.public_subnet_id
+
+  environment = var.environment
+
+  key_name = "cloud-platform-ec2"
+
+}
