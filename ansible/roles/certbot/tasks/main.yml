@@ -33,6 +33,7 @@
     -w /var/www/certbot
     -d {{ grafana_domain }}
     -d {{ prometheus_domain }}
+    -d {{ rosie_domain }}
     --non-interactive
     --agree-tos
     -m {{ letsencrypt_email }}

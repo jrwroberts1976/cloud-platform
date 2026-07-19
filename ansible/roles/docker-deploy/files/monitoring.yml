@@ -16,6 +16,8 @@ services:
     restart: unless-stopped
     ports:
       - "3000:3000"
+    volumes:
+      - /opt/cloud-platform/data/grafana:/var/lib/grafana
     networks:
       - cloud-platform
 
