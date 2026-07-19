@@ -1,3 +1,5 @@
 grafana_domain: grafana.jrwroberts.co.uk
 
 prometheus_domain: prometheus.jrwroberts.co.uk
+
+letsencrypt_email: jrwroberts1976@gmail.com
