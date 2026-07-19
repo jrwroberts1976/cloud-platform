@@ -107,7 +107,7 @@ resource "aws_instance" "main" {
   key_name = aws_key_pair.main.key_name
 
 
-  associate_public_ip_address = false
+  associate_public_ip_address = true
 
 
   tags = {
