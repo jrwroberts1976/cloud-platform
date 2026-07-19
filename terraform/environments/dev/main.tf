@@ -33,4 +33,5 @@ module "ec2" {
 
   admin_ip = var.admin_ip
 
+  allocate_elastic_ip = true
 }

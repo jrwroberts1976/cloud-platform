@@ -52,3 +52,9 @@ variable "admin_ip" {
   type = string
 
 }
+
+variable "allocate_elastic_ip" {
+  description = "Allocate and associate an Elastic IP with the EC2 instance."
+  type        = bool
+  default     = false
+}
