@@ -1,0 +1,10 @@
+---
+
+- name: Configure Cloud Platform
+  hosts: cloud_platform
+  become: yes
+
+  roles:
+    - docker-deploy
+    - nginx
+    
