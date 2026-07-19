@@ -2,7 +2,7 @@
 
 A production-style cloud engineering project demonstrating Infrastructure as Code, automation, container platforms, monitoring, security and DevOps practices using AWS, Terraform, Ansible, Docker and modern platform engineering principles.
 
-This project is being developed incrementally using industry practices and serves as a practical portfolio demonstrating cloud infrastructure deployment, automation and operational skills.
+This project is built incrementally using industry-aligned practices and serves as a practical portfolio demonstrating cloud infrastructure deployment, automation, operational support and platform engineering skills.
 
 ---
 
@@ -10,13 +10,13 @@ This project is being developed incrementally using industry practices and serve
 
 The objective of this project is to build a complete cloud platform lifecycle:
 
-* Provision infrastructure using Infrastructure as Code
-* Automate server configuration
-* Deploy containerised workloads
-* Implement monitoring and observability
-* Secure external access
-* Automate operational processes
-* Build foundations for Kubernetes and GitOps adoption
+- Provision infrastructure using Infrastructure as Code
+- Automate server configuration
+- Deploy containerised workloads
+- Implement monitoring and observability
+- Secure external access
+- Automate operational processes
+- Build foundations for Kubernetes and GitOps adoption
 
 The platform demonstrates a complete workflow from developer workstation through to production-style cloud services.
 
@@ -28,90 +28,103 @@ The platform demonstrates a complete workflow from developer workstation through
 Developer Workstation
 
         |
-        |
         v
 
-Git Repository
-(GitHub)
+GitHub Repository
 
-        |
         |
         v
 
 Terraform
 Infrastructure as Code
 
-        |
         |
         v
 
 AWS Cloud Platform
 
         |
-        |
         v
 
 Ansible Automation
 
-        |
         |
         v
 
 Docker Platform
 
         |
+        +-------------------------+
+        |                         |
+        v                         v
+
+     nginx                 Monitoring Stack
+ Reverse Proxy                    |
+        |                         |
+        |              +----------+----------+
+        |              |          |          |
+        v              v          v          v
+
+  HTTPS/TLS        Grafana   Prometheus  Node Exporter
+  Let's Encrypt                         cAdvisor
+
         |
-        +----------------------+
-        |                      |
-        v                      v
+        v
 
-     nginx              Monitoring Stack
- Reverse Proxy                |
-        |                     |
-        |          +----------+----------+
-        |          |          |          |
-        v          v          v          v
-
-    Grafana   Prometheus  Node Exporter cAdvisor
-
+Cloudflare DNS
 Technology Stack
 Cloud Infrastructure
+
+Technologies:
+
 AWS
 Amazon VPC
 Amazon EC2
 Amazon S3
-DynamoDB Terraform State Locking
+DynamoDB Terraform state locking
 Security Groups
 IAM
-Infrastructure as Code
-Terraform
-Modular Terraform architecture
-Remote state management
-Environment separation
 
 Implemented:
 
-✅ AWS networking
 ✅ VPC deployment
-✅ Public subnet
+✅ Public subnet architecture
 ✅ Internet Gateway
-✅ Routing
+✅ Route tables
 ✅ Security Groups
 ✅ EC2 provisioning
+✅ Remote Terraform state management
+✅ Environment separation
+
+Infrastructure as Code
+Terraform
+
+Implemented:
+
+✅ Modular Terraform architecture
+✅ AWS provider configuration
+✅ Networking modules
+✅ EC2 modules
+✅ IAM configuration
+✅ Security modules
+✅ Remote state backend
+✅ Infrastructure lifecycle management
 
 Configuration Management
 Ansible
-Ansible Roles
-Automated server configuration
-SSH-based deployment
+
+The platform uses Ansible roles to automate server configuration and deployment.
 
 Implemented:
 
-✅ Server bootstrap
+✅ Automated server bootstrap
 ✅ Docker installation
-✅ Application deployment
-✅ Network configuration
-✅ Reverse proxy deployment
+✅ Docker Compose deployment
+✅ nginx configuration
+✅ Certbot installation
+✅ TLS certificate automation
+✅ Service configuration
+✅ Repeatable deployments
 
 Container Platform
 
@@ -124,19 +137,19 @@ nginx
 Implemented:
 
 ✅ Docker runtime
-✅ Docker Compose deployments
-✅ Shared Docker networking
+✅ Container networking
+✅ Service deployment
 ✅ Container lifecycle management
 ✅ Reverse proxy architecture
 
 Monitoring and Observability
 
-Implemented:
+The monitoring platform provides infrastructure and container visibility.
 
 Service	Purpose
+Grafana	Dashboards and visualisation
 Prometheus	Metrics collection
-Grafana	Monitoring dashboards
-Node Exporter	Host metrics
+Node Exporter	Host-level metrics
 cAdvisor	Container metrics
 
 Planned:
@@ -151,22 +164,18 @@ Implemented:
 
 ✅ AWS Security Groups
 ✅ Restricted SSH access
-✅ Automated infrastructure deployment
+✅ Infrastructure automation
 ✅ Private Docker networking
-✅ Reverse proxy architecture
-
-In Progress:
-
-🚧 HTTPS certificates using Let's Encrypt
-🚧 Cloudflare DNS integration
-🚧 Authentication layer
+✅ HTTPS/TLS encryption
+✅ Let's Encrypt certificates
+✅ Cloudflare DNS integration
 
 Planned:
 
 CrowdSec intrusion prevention
 Authelia authentication
-Security monitoring
 Vulnerability scanning
+Security monitoring
 Current Platform Status
 Component	Status
 Terraform AWS foundation	✅ Complete
@@ -181,26 +190,25 @@ Grafana	✅ Complete
 Prometheus	✅ Complete
 nginx reverse proxy	✅ Complete
 DNS integration	✅ Complete
-HTTPS certificates	🚧 In Progress
-Authentication	⬜ Planned
+HTTPS certificates	✅ Complete
+Authentication layer	⬜ Planned
 Central logging	⬜ Planned
 CI/CD pipeline	⬜ Planned
 Kubernetes platform	⬜ Planned
 Current Deployment
 
-The AWS EC2 instance currently runs:
+The AWS EC2 instance currently hosts:
 
 Service	Purpose	Port
-nginx	Web entry point / reverse proxy	80
+nginx	HTTPS reverse proxy	80 / 443
+Grafana	Monitoring dashboards	3000
 Prometheus	Metrics database	9090
-Grafana	Visualisation platform	3000
 Node Exporter	Host metrics	9100
 cAdvisor	Container metrics	8080
 
-External access will be provided through:
+External services:
 
 https://grafana.jrwroberts.co.uk
-
 https://prometheus.jrwroberts.co.uk
 Repository Structure
 cloud-platform/
@@ -209,9 +217,10 @@ cloud-platform/
 │   ├── inventory/
 │   ├── playbooks/
 │   └── roles/
-│       ├── common/
 │       ├── docker/
 │       ├── docker-deploy/
+│       ├── nginx/
+│       ├── certbot/
 │       └── aws-security/
 │
 ├── docker/
@@ -240,7 +249,7 @@ cloud-platform/
 └── README.md
 Deployment Workflow
 
-The platform follows this deployment lifecycle:
+The platform follows this lifecycle:
 
 Developer Machine
 
@@ -273,7 +282,7 @@ Deploys Platform Services
         |
         v
 
-nginx
+nginx + Let's Encrypt
 
 Provides Secure External Access
 
@@ -283,7 +292,6 @@ Provides Secure External Access
 Monitoring Platform
 
 Provides Observability
-
 Development Roadmap
 Phase 1 - Cloud Foundation ✅
 
@@ -302,14 +310,14 @@ Docker platform
 Container deployment
 Monitoring stack
 Shared networking
-Phase 3 - Secure Cloud Access 🚧
+Phase 3 - Secure Cloud Access ✅
 
-Current phase:
+Completed:
 
 nginx reverse proxy
-HTTPS certificates
 Cloudflare DNS
-Authentication
+HTTPS certificates
+Automated certificate renewal
 Phase 4 - Operations Platform
 
 Planned:
@@ -336,7 +344,8 @@ Terraform Infrastructure as Code
 Ansible Automation
 Linux Administration
 Docker Container Platforms
-Reverse Proxy Architecture
+nginx Reverse Proxy Architecture
+HTTPS/TLS Implementation
 Monitoring and Observability
 Networking
 Security Engineering
@@ -349,45 +358,36 @@ The long-term goal is to demonstrate a complete modern cloud engineering workflo
 Code
 
  |
- v
 
 GitHub
 
  |
- v
 
 CI/CD Pipeline
 
  |
- v
 
 Terraform
 
  |
- v
 
 AWS Infrastructure
 
  |
- v
 
 Ansible Configuration
 
  |
- v
 
 Container Platform
 
  |
- v
 
 Secure Applications
 
  |
- v
 
 Monitoring and Operations
-
 Author
 
 James Roberts
